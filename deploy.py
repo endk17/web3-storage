@@ -1,9 +1,6 @@
 import json
 
 from web3 import Web3
-
-# In the video, we forget to `install_solc`
-# from solcx import compile_standard
 from solcx import compile_standard, install_solc
 import os
 from dotenv import load_dotenv
@@ -14,7 +11,11 @@ load_dotenv()
 with open("./simplestorage.sol", "r") as file:
     simple_storage_file = file.read()
 
-# Solidity source code
+"""
+Solidity source code
+- Must initialise solc version before compiling
+"""
+install_solc("0.6.0")
 compiled_sol = compile_standard(
     {
         "language": "Solidity",
